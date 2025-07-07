@@ -1,0 +1,480 @@
+/* || RESET */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img,
+picture,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+/* || FONTS */
+@font-face {
+  font-display: swap;
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/karla-v32-latin-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../assets/fonts/karla-v32-latin-700.woff2") format("woff2");
+}
+
+/* || VARIABLES */
+/* CHANGE THE DATA BELOW AS NEEDED */
+:root {
+  /* FONTS */
+  --FF: "Karla", sans-serif;
+  --FS: 1rem;
+
+  /* COLORS */
+  --BGCOLOR: hsl(204, 43%, 93%);
+  --BGCOLOR-CARD-HEADER: #fff;
+  --BGCOLOR-CARD-SUBSCRIPTION: #2bb3b1;
+  --BGCOLOR-CARD-CTA: #bfdf32;
+  --BGCOLOR-CARD-CTA-HOVER: hsl(71, 73%, 48%);
+  --BGCOLOR-CARD-FOOTER: #4abebd;
+  --FONT-COLOR-CARD-TITLE: hsl(179, 62%, 43%);
+  --FONT-COLOR-CARD-SUBTITLE: hsl(71, 73%, 54%);
+  --FONT-COLOR-CARD-DESCRIPTION: hsl(218, 22%, 67%);
+  --FONT-COLOR-CARD-SUBSCRIPTION-TITLE: #fff;
+  --FONT-COLOR-CARD-PRICE: #fff;
+  --FONT-COLOR-CARD-SPAN: hsla(0, 0%, 100%, 0.8);
+  --FONT-COLOR-CARD-INFO: #fff;
+  --FONT-COLOR-CARD-CTA: #fff;
+  --FONT-COLOR-CARD-FOOTER-TITLE: #fff;
+  --FONT-COLOR-CARD-LIST: hsla(0, 0%, 100%, 0.8);
+  --FONT-COLOR-CARD-LIST-HOVER: hsla(0, 0%, 100%, 1);
+  --SHADOW-COLOR-CARD: #cadbeb;
+  --SHADOW-COLOR-CARD-CTA: rgba(0, 0, 0, 0.15);
+
+  /* THEME TOGGLE COLORS */
+  --FONT-COLOR-THEME-ICON-LIGHT: #256d6a;
+  --BGCOLOR-THEME-BUTTON: #d2f4f1;
+  --BGCOLOR-THEME-BUTTON-AFTER: #256d6a;
+  --BORDER-COLOR-THEME-BUTTON: #82ccc7;
+  --SHADOW-COLOR-THEME: rgba(37, 109, 106, 0.3);
+
+  /* BORDERS */
+  --BORDER-THEME-BUTTON: 1px solid var(--BORDER-COLOR-THEME-BUTTON);
+
+  /* SHADOWS */
+  --BOX-SHADOW-THEME: 0 0 3px var(--SHADOW-COLOR-THEME);
+  --BOX-SHADOW-CARD: 0 10px 20px var(--SHADOW-COLOR-CARD);
+  --BOX-SHADOW-CARD-CTA: 0 10px 20px var(--SHADOW-COLOR-CARD-CTA);
+}
+
+/* || UTILITY CLASSES */
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  top: auto;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+.dark {
+  --BGCOLOR: #202124;
+  --BGCOLOR-CARD-HEADER: #2a2b2e;
+  --BGCOLOR-CARD-SUBSCRIPTION: #2e5f5e;
+  --BGCOLOR-CARD-CTA: #a4c639;
+  --BGCOLOR-CARD-CTA-HOVER: #9ab932;
+  --BGCOLOR-CARD-FOOTER: #3a6b6a;
+  --FONT-COLOR-CARD-TITLE: #b8f1f0;
+  --FONT-COLOR-CARD-SUBTITLE: #f0f08a;
+  --FONT-COLOR-CARD-DESCRIPTION: #d0d0d0;
+  --FONT-COLOR-CARD-SUBSCRIPTION-TITLE: #f8f8f8;
+  --FONT-COLOR-CARD-PRICE: #fefefe;
+  --FONT-COLOR-CARD-SPAN: hsla(0, 0%, 100%, 0.7);
+  --FONT-COLOR-CARD-INFO: #e0e0e0;
+  --FONT-COLOR-CARD-CTA: #202124;
+  --FONT-COLOR-CARD-FOOTER-TITLE: #ffffff;
+  --FONT-COLOR-CARD-LIST: hsla(0, 0%, 100%, 0.7);
+  --FONT-COLOR-CARD-LIST-HOVER: #ffffff;
+  --SHADOW-COLOR-CARD: rgba(0, 0, 0, 0.4);
+  --SHADOW-COLOR-CARD-CTA: rgba(255, 255, 255, 0.08);
+
+  /* THEME TOGGLE COLORS */
+  --FONT-COLOR-THEME-ICON-DARK: #aee1dd;
+  --BGCOLOR-THEME-BUTTON: #2a4746;
+  --BGCOLOR-THEME-BUTTON-AFTER: #aee1dd;
+  --BORDER-COLOR-THEME-BUTTON: #599c98;
+  --SHADOW-COLOR-THEME: rgba(174, 225, 221, 0.25);
+}
+
+/* || GENERAL STYLES */
+html {
+  font-size: var(--FS);
+  font-family: var(--FF);
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--BGCOLOR);
+}
+
+/* || HEADER */
+.theme {
+  box-shadow: var(--BOX-SHADOW-THEME);
+  background-color: transparent;
+  border-radius: 50px;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5em 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.theme__button {
+  border: var(--BORDER-THEME-BUTTON);
+  background-color: var(--BGCOLOR-THEME-BUTTON);
+  border-radius: 100px;
+  width: 2.5rem;
+  height: 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.theme__button::after {
+  content: "";
+  background-color: var(--BGCOLOR-THEME-BUTTON-AFTER);
+  position: absolute;
+  left: 0;
+  top: 0.225rem;
+  bottom: 0.225rem;
+  width: 1rem;
+  border-radius: 100px;
+  transform: translateX(0.2rem);
+}
+
+.theme__button.active::after {
+  transform: translateX(1.1rem);
+}
+
+.theme__icon {
+  width: 18px;
+}
+
+.theme__icon--light {
+  color: var(--FONT-COLOR-THEME-ICON-LIGHT);
+}
+
+.theme__icon--dark {
+  color: var(--FONT-COLOR-THEME-ICON-DARK);
+}
+
+/* || MAIN */
+.price {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.price__container {
+  padding: 4rem 1rem;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: var(--BOX-SHADOW-CARD);
+  max-width: 22.25rem;
+}
+
+.card__header {
+  background-color: var(--BGCOLOR-CARD-HEADER);
+  padding: 1.75em 1em 2.025em;
+}
+
+.card__title {
+  color: var(--FONT-COLOR-CARD-TITLE);
+  font-size: 1.225rem;
+  margin-bottom: 1.25em;
+}
+
+.card__subtitle {
+  color: var(--FONT-COLOR-CARD-SUBTITLE);
+  font-weight: 700;
+  font-size: 0.915rem;
+  line-height: 1.4;
+  margin-bottom: 1em;
+}
+
+.card__description {
+  color: var(--FONT-COLOR-CARD-DESCRIPTION);
+  font-size: 0.855rem;
+  line-height: 1.9;
+}
+
+.card__subscription {
+  padding: 1em;
+  background-color: var(--BGCOLOR-CARD-SUBSCRIPTION);
+}
+
+.card__subscription-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1em;
+  color: var(--FONT-COLOR-CARD-SUBSCRIPTION-TITLE);
+}
+
+.card__rate {
+  display: flex;
+  flex-direction: row;
+  gap: 0.7em;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+
+.card__price {
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--FONT-COLOR-CARD-PRICE);
+}
+
+.card__span {
+  font-weight: 400;
+  font-size: 0.975rem;
+  color: var(--FONT-COLOR-CARD-SPAN);
+}
+
+.card__info {
+  color: var(--FONT-COLOR-CARD-INFO);
+  font-size: 0.975rem;
+  margin-bottom: 1.9em;
+}
+
+.card__cta {
+  user-select: none;
+  cursor: pointer;
+  width: 100%;
+  background-color: var(--BGCOLOR-CARD-CTA);
+  border-radius: 5px;
+  padding: 0.9em;
+  font-weight: 700;
+  color: var(--FONT-COLOR-CARD-CTA);
+  box-shadow: var(--BOX-SHADOW-CARD-CTA);
+}
+
+.card__cta:hover,
+.card__cta:focus-visible {
+  background-color: var(--BGCOLOR-CARD-CTA-HOVER);
+  transform: translateY(-3px);
+}
+
+.card__footer {
+  background-color: var(--BGCOLOR-CARD-FOOTER);
+  padding: 1.6em 1em;
+}
+
+.card__footer-title {
+  font-weight: 700;
+  font-size: 1.115rem;
+  margin-bottom: 1.15em;
+  color: var(--FONT-COLOR-CARD-FOOTER-TITLE);
+}
+
+.card__ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.card__list {
+  font-size: 0.86rem;
+  color: var(--FONT-COLOR-CARD-LIST);
+  cursor: pointer;
+}
+
+.card__list:hover {
+  color: var(--FONT-COLOR-CARD-LIST-HOVER);
+  transform: translateX(3px);
+}
+
+/* || MEDIA QUERY (DEVICE WIDTH) */
+@media screen and (min-width: 23.4375rem) {
+  .price__container {
+    padding: 4rem 2rem;
+  }
+
+  .card__header {
+    padding: 1.75em 1.5em 2.025em;
+  }
+
+  .card__subscription {
+    padding: 1.5em;
+  }
+
+  .card__footer {
+    padding: 1.6em 1.5em;
+  }
+}
+
+@media screen and (min-width: 40rem) {
+  /* || MAIN */
+  .card {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "header       header"
+      "subscription footer";
+    max-width: 39.65rem;
+  }
+
+  .card__header {
+    grid-area: header;
+    padding: 2.5em 2.5em 2.4em;
+  }
+
+  .card__title {
+    font-size: clamp(1.225rem, 1.025rem + 0.5vw, 1.475rem);
+    margin-bottom: 1em;
+  }
+
+  .card__subtitle {
+    font-size: clamp(0.915rem, 0.767rem + 0.37vw, 1.1rem);
+    line-height: 1.4;
+    margin-bottom: 0.5em;
+  }
+
+  .card__description {
+    font-size: clamp(0.855rem, 0.759rem + 0.24vw, 0.975rem);
+    line-height: 1.7;
+  }
+
+  .card__subscription {
+    grid-area: subscription;
+    padding: 2.5em;
+  }
+
+  .card__footer {
+    grid-area: footer;
+    padding: 2.5em;
+  }
+}
+
+/* || MEDIA QUERY (REDUCED MOTION) */
+/* CHANGE THE DATA BELOW AS NEEDED */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .theme,
+  .card {
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
+  body,
+  .card__header,
+  .card__subscription,
+  .card__footer {
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .card__cta {
+    transition: transform 0.15s ease-in-out, background-color 0.3s ease-in-out,
+      color 0.15s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+
+  .card__title,
+  .card__subtitle,
+  .card__description,
+  .card__subscription-title,
+  .card__price,
+  .card__span,
+  .card__info,
+  .card__footer-title {
+    transition: color 0.15s ease-in-out;
+  }
+
+  .card__list {
+    transition: transform 0.15s ease-in-out, color 0.15s ease-in-out;
+  }
+
+  .theme__button {
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  }
+
+  .theme__button::after {
+    transition: transform 0.15s ease-in-out, background-color 0.3s ease-in-out;
+  }
+
+  .theme__icon {
+    animation: fadeIn 0.2s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation: none !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0.001ms !important;
+    transition: none !important;
+    caret-color: auto !important;
+  }
+}
